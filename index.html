@@ -23,11 +23,15 @@
   <body>
     <script>
       window.addEventListener("message", (event) => {
+        if (event.origin !== "https://alexkeyyyy.github.io") {
+          return;
+        }
+
         if (event.data.type === "getText") {
           const viewLines = document.querySelectorAll(".view-line");
           let result = "";
           viewLines.forEach((line) => {
-            line.childNodes[0].childNodes.forEach((innerSpan) => {
+            line.childNodes.forEach((innerSpan) => {
               result += innerSpan.textContent; // Собираем текстовое содержимое из каждого span
             });
             result += "\r\n"; // Добавляем новую строку после каждой линии
@@ -40,9 +44,19 @@
         } else if (event.data.type === "setCode") {
           const codeText = event.data.codeText;
 
-          // Ваш код для отображения codeText в консоли.
-          // Например, если вы используете editor, вы можете установить его значение.
-          document.querySelector(".view-lines").innerHTML = codeText; // Пример, как можно установить текст.
+          // Логика для отображения полученного codeText в консоли.
+          const viewLinesContainer = document.querySelector(".view-lines");
+          viewLinesContainer.innerHTML = "";
+
+          codeText.split("\r\n").forEach((lineText) => {
+            const lineDiv = document.createElement("div");
+            lineDiv.className = "view-line";
+            lineDiv.contentEditable = true; // Добавляем возможность редактирования
+            const span = document.createElement("span");
+            span.textContent = lineText;
+            lineDiv.appendChild(span);
+            viewLinesContainer.appendChild(lineDiv);
+          });
         }
       });
     </script>
