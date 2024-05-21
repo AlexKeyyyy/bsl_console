@@ -23,7 +23,7 @@
   <body>
     <script>
       window.addEventListener("message", (event) => {
-        if (event.data === "getText") {
+        if (event.data.type === "getText") {
           const viewLines = document.querySelectorAll(".view-line");
           let result = "";
           viewLines.forEach((line) => {
@@ -33,7 +33,16 @@
             result += "\r\n"; // Добавляем новую строку после каждой линии
           });
 
-          event.source.postMessage(result, event.origin);
+          event.source.postMessage(
+            { type: event.data.action, text: result },
+            event.origin
+          ); // Отправляем результат обратно
+        } else if (event.data.type === "setCode") {
+          const codeText = event.data.codeText;
+
+          // Ваш код для отображения codeText в консоли.
+          // Например, если вы используете editor, вы можете установить его значение.
+          document.querySelector(".view-lines").innerHTML = codeText; // Пример, как можно установить текст.
         }
       });
     </script>
