@@ -23,15 +23,11 @@
   <body>
     <script>
       window.addEventListener("message", (event) => {
-        if (event.origin !== "https://alexkeyyyy.github.io") {
-          return;
-        }
-
         if (event.data.type === "getText") {
           const viewLines = document.querySelectorAll(".view-line");
           let result = "";
           viewLines.forEach((line) => {
-            line.childNodes.forEach((innerSpan) => {
+            line.childNodes[0].childNodes.forEach((innerSpan) => {
               result += innerSpan.textContent; // Собираем текстовое содержимое из каждого span
             });
             result += "\r\n"; // Добавляем новую строку после каждой линии
