@@ -42,7 +42,7 @@
 
           // Логика для отображения полученного codeText в консоли.
           const viewLinesContainer = document.querySelector(".view-lines");
-          //viewLinesContainer.innerHTML = "";
+          viewLinesContainer.innerHTML = "";
 
           codeText.split("\r\n").forEach((lineText) => {
             const lineDiv = document.createElement("div");
@@ -53,6 +53,13 @@
             lineDiv.appendChild(span);
             viewLinesContainer.appendChild(lineDiv);
           });
+        }
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const viewLinesContainer = document.querySelector(".view-lines");
+        if (viewLinesContainer) {
+          viewLinesContainer.contentEditable = true; // Делает всю консоль редактируемой
         }
       });
     </script>
