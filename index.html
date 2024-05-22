@@ -17,6 +17,13 @@
       #container {
         height: 100%;
       }
+      .view-line {
+        white-space: pre; /* Сохраняет пробелы и переносы строк */
+      }
+      .view-lines {
+        display: flex;
+        flex-direction: column;
+      }
     </style>
   </head>
 
@@ -47,7 +54,7 @@
           codeText.split("\r\n").forEach((lineText) => {
             const lineDiv = document.createElement("div");
             lineDiv.className = "view-line";
-            lineDiv.contentEditable = true; // Добавляем возможность редактирования
+            //lineDiv.contentEditable = true; // Добавляем возможность редактирования
             const span = document.createElement("span");
             span.textContent = lineText;
             lineDiv.appendChild(span);
