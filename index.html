@@ -46,7 +46,7 @@
           ); // Отправляем результат обратно
         } else if (event.data.type === "setCode") {
           const codeText = event.data.codeText;
-
+          console.log(codeText);
           // Логика для отображения полученного codeText в консоли.
           const viewLinesContainer = document.querySelector(".view-lines");
           viewLinesContainer.innerHTML = "";
