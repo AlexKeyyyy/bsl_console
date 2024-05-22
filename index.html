@@ -49,7 +49,16 @@
 
           // Логика для отображения полученного codeText в консоли.
           const viewLinesContainer = document.querySelector(".view-lines");
-          viewLinesContainer.innerHTML = codeText;
+          //viewLinesContainer.innerHTML = "";
+
+          codeText.split("\r\n").forEach((lineText) => {
+            const lineDiv = document.createElement("div");
+            lineDiv.className = "view-line";
+            const span = document.createElement("span");
+            span.textContent = lineText + "\n"; // Сохранение переносов строк
+            lineDiv.appendChild(span);
+            viewLinesContainer.appendChild(lineDiv);
+          });
         }
       });
 
