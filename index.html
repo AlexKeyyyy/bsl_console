@@ -17,13 +17,6 @@
       #container {
         height: 100%;
       }
-      .view-line {
-        white-space: pre; /* Сохраняет пробелы и переносы строк */
-      }
-      .view-lines {
-        display: flex;
-        flex-direction: column;
-      }
     </style>
   </head>
 
@@ -47,29 +40,23 @@
         } else if (event.data.type === "setCode") {
           const codeText = event.data.codeText;
           console.log(codeText);
-          // Логика для отображения полученного codeText в консоли.
-          const viewLinesContainer = document.querySelector(".view-lines");
-          viewLinesContainer = "";
-          const lineDiv = "";
-          codeText.split("\r\n").forEach((lineText) => {
-            //const lineDiv = document.createElement("div");
-            lineDiv.className = "view-line";
-            lineDiv.contentEditable = true; // Добавляем возможность редактирования
-            //const span = document.createElement("span");
-            //span.textContent = lineText;
-            lineDiv.appendChild(lineText);
-            console.log(lineDiv);
-            viewLinesContainer.appendChild(lineDiv);
-          });
+          // Получаем элемент консоли
+          const consoleElement = document.querySelector(".view-lines");
+
+          // Устанавливаем текст в консоли
+          consoleElement.textContent = codeText;
+
+          // Делаем консоль редактируемой
+          consoleElement.contentEditable = true;
         }
       });
 
-      document.addEventListener("DOMContentLoaded", () => {
-        const viewLinesContainer = document.querySelector(".view-lines");
-        if (viewLinesContainer) {
-          viewLinesContainer.contentEditable = true; // Делает всю консоль редактируемой
-        }
-      });
+      // document.addEventListener("DOMContentLoaded", () => {
+      //   const viewLinesContainer = document.querySelector(".view-lines");
+      //   if (viewLinesContainer) {
+      //     viewLinesContainer.contentEditable = true; // Делает всю консоль редактируемой
+      //   }
+      // });
     </script>
     <div id="container"></div>
     <div id="display">
