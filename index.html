@@ -54,9 +54,8 @@
           codeText.split("\r\n").forEach((lineText) => {
             const lineDiv = document.createElement("div");
             lineDiv.className = "view-line";
-            const span = document.createElement("span");
-            span.textContent = lineText + "\n"; // Сохранение переносов строк
-            lineDiv.appendChild(span);
+            lineDiv.contentEditable = true; // Добавляем возможность редактирования
+            lineDiv.innerHTML = `<span>${lineText}</span>\n`; // Используем innerHTML для вставки строки
             viewLinesContainer.appendChild(lineDiv);
           });
         }
